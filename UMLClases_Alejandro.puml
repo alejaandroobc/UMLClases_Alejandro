@@ -28,16 +28,16 @@ class Conference{
 max_attendees:Integer
 }
 
-AAUOC <|-- Location
-AAUOC <|-- Event
-AAUOC <|-- Person
+AAUOC <|-- "0..*" Location
+AAUOC <|-- "0..*" Event
+AAUOC <|-- "0..*" Person
 Person <|-- Member
 Member <|-- BoardMember
 Event <|-- BoardMeeting
-Event -- Location :isLocated In
-Member -- Event : attends To
-BoardMember -- BoardMeeting : attends To
-Person -- Conference : attends To
+Event "0..*" -- "1" Location :isLocated In
+Member "0..*" -- "0..*" Event : attends To
+BoardMember "0..*" -- "0..*" BoardMeeting : attends To
+Person "0..*" -- "0..*" Conference : attends To
 (Event, BoardMeeting) -- Conference
 
 @enduml
